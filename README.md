@@ -94,6 +94,24 @@ export default {
 }
 ```
 
+### this.$fetch
+
+You can also manually trigger it:
+
+```js
+export default {
+  data: () => ({username: 'egoist', user: {}}),
+  fetch: {
+    user: vm => `/api/user/${vm.username}`
+  }
+  watch: {
+    username() {
+      this.$fetch('user')
+    }
+  }
+}
+```
+
 ### state and value
 
 It's just like [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
