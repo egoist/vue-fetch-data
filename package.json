@@ -1,0 +1,44 @@
+{
+  "name": "vue-fetch-data",
+  "version": "0.0.0",
+  "description": "A simple and declarative way to fetch data for Vue components.",
+  "repository": {
+    "url": "egoist/vue-fetch-data",
+    "type": "git"
+  },
+  "main": "dist/vue-fetch-data.common.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest && npm run lint && npm run build",
+    "lint": "xo src/*.js",
+    "build": "bili --format cjs --module-name FetchData --js babel",
+    "build:demo": "vue build --config config.demo.js --prod",
+    "dev:demo": "vue build --config config.demo.js",
+    "deploy:demo": "npm run build:demo && surge -p dist-demo -d vue-fetch-data.surge.sh"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-latest": "^6.22.0",
+    "jest-cli": "^18.1.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": false,
+    "envs": ["jest"],
+    "rules": {
+      "guard-for-in": 0
+    }
+  },
+  "dependencies": {
+    "axios": "^0.15.3"
+  }
+}
