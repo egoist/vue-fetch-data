@@ -96,6 +96,8 @@ export default {
 
 ### state and value
 
+It's just like [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
 - pending: initial state, not fulfilled or rejected.
 - fulfilled: meaning that the operation completed successfully.
 - rejected: meaning that the operation failed.
