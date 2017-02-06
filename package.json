@@ -26,6 +26,7 @@
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
+    "bili": "^0.13.0",
     "jest-cli": "^18.1.0",
     "rollup-plugin-babel": "^2.7.1",
     "xo": "^0.17.1"
@@ -33,7 +34,9 @@
   "xo": {
     "space": 2,
     "semicolon": false,
-    "envs": ["jest"],
+    "envs": [
+      "jest"
+    ],
     "rules": {
       "guard-for-in": 0
     }
