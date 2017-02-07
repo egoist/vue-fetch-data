@@ -9,6 +9,8 @@ export default function (Vue) {
     }
   }
 
+  Vue.prototype.$http = axios
+
   Vue.mixin({
     created() {
       const {fetch} = this.$options
@@ -26,8 +28,10 @@ export default function (Vue) {
             } else if (typeof value === 'object') {
               poll = value.poll
               delete value.poll
+              const commit = value.commit
+              delete value.commit
 
-              handle(this, axios(value), key)
+              handle(this, axios(value), key, commit)
             }
           }
 
@@ -40,32 +44,37 @@ export default function (Vue) {
     }
   })
 
-  function handle(vm, promise, key) {
-    vm[key] = {
-      ...vm[key],
+  function handle(vm, promise, key, commit) {
+    const update = newValue => {
+      if (commit) {
+        this.$store.commit(commit, newValue)
+      } else {
+        vm[key] = newValue
+      }
+    }
+
+    update({
       pending: true,
       fulfilled: false,
       rejected: false
-    }
+    })
 
     promise
       .then(res => {
-        vm[key] = {
-          ...vm[key],
+        update({
           pending: false,
           fulfilled: true,
           rejected: false,
           value: res.data
-        }
+        })
       })
       .catch(err => {
-        vm[key] = {
-          ...vm[key],
+        update({
           pending: false,
           fulfilled: false,
           rejected: true,
           reason: err
-        }
+        })
       })
   }
 }

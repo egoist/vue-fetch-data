@@ -94,6 +94,39 @@ export default {
 }
 ```
 
+#### commit
+
+Instead of updating data in current component, you can use `commit` to commit a Vuex mutation:
+
+```js
+export default {
+  computed: {
+    ...mapState(['user'])
+  },
+  fetch: {
+    user: {
+      commit: 'UPDATE_USER',
+      url: '/user/egoist'
+    }
+  }
+}
+```
+
+And your vuex store would look like:
+
+```js
+{
+  state: {
+    user: {}
+  },
+  mutation: {
+    UPDATE_USER(state, payload) {
+      state.user = payload
+    }
+  }
+}
+```
+
 ### this.$fetch
 
 You can also manually trigger it:
@@ -111,6 +144,10 @@ export default {
   }
 }
 ```
+
+### this.$http
+
+Access `axios` directly, which means you can do `this.$http.get/post` and such in component.
 
 ### state and value
 
