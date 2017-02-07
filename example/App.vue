@@ -16,17 +16,24 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default {
     name: 'app',
     data() {
       return {
-        username: 'egoist',
-        user: null
+        username: 'egoist'
       }
+    },
+    computed: {
+      ...mapState(['user'])
     },
     fetch: {
       user() {
-        return `https://api.github.com/users/${this.username}`
+        return {
+          url: `https://api.github.com/users/${this.username}`,
+          commit: 'UPDATE_USER'
+        }
       }
     },
     methods: {

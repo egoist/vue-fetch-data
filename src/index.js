@@ -47,7 +47,7 @@ export default function (Vue) {
   function handle(vm, promise, key, commit) {
     const update = newValue => {
       if (commit) {
-        this.$store.commit(commit, newValue)
+        vm.$store.commit(commit, newValue)
       } else {
         vm[key] = newValue
       }
