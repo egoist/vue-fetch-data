@@ -3,8 +3,5 @@ module.exports = {
   dist: 'dist-demo',
   html: {
     title: 'vue-fetch-data'
-  },
-  babel: {
-    babelrc: false
   }
 }

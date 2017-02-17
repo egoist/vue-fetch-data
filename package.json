@@ -14,8 +14,8 @@
     "test": "npm run lint && npm run build",
     "lint": "xo src/*.js",
     "build": "bili --format cjs --module-name FetchData --js babel",
-    "build:demo": "vue build --config config.demo.js --prod",
-    "dev:demo": "vue build --config config.demo.js",
+    "build:demo": "vbuild -c",
+    "dev:demo": "vbuild -dc",
     "deploy:demo": "npm run build:demo && surge -p dist-demo -d vue-fetch-data.surge.sh"
   },
   "author": "egoist <0x142857@gmail.com>",
@@ -44,5 +44,15 @@
   },
   "dependencies": {
     "axios": "^0.15.3"
+  },
+  "babel": {
+    "presets": [["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }]],
+    "plugins": [
+      ["transform-object-rest-spread"]
+    ]
   }
 }
