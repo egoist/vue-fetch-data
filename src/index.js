@@ -46,9 +46,11 @@ export default function (Vue) {
 
   function handle(vm, promise, key, commit) {
     const update = newValue => {
-      if (commit) {
+      if (commit && !vm.$store) {
+        console.warn('Store not found, skipping commit')
+      }else if (commit) {
         vm.$store.commit(commit, newValue)
-      } else {
+      }else {
         vm[key] = newValue
       }
     }
@@ -78,4 +80,3 @@ export default function (Vue) {
       })
   }
 }
-
